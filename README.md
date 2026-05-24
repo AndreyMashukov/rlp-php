@@ -1,10 +1,29 @@
-# rlp-php
+# amashukov/rlp-php
 
-RLP (Recursive Length Prefix) encoder and decoder in pure PHP — the canonical serialization format used throughout Ethereum for transactions, blocks, and the state trie.
+Pure-PHP RLP (Recursive Length Prefix) encoder and decoder — Ethereum's canonical serialization for transactions, blocks and the state trie.
+
+[![CI](https://img.shields.io/github/actions/workflow/status/AndreyMashukov/rlp-php/ci.yml?branch=main&label=CI)](https://github.com/AndreyMashukov/rlp-php/actions)
+[![PHPStan L9](https://img.shields.io/github/actions/workflow/status/AndreyMashukov/rlp-php/stan.yml?branch=main&label=PHPStan%20L9)](https://github.com/AndreyMashukov/rlp-php/actions)
+[![Latest Version](https://img.shields.io/packagist/v/amashukov/rlp-php)](https://packagist.org/packages/amashukov/rlp-php)
+[![Downloads](https://img.shields.io/packagist/dt/amashukov/rlp-php)](https://packagist.org/packages/amashukov/rlp-php)
+[![PHP](https://img.shields.io/packagist/dependency-v/amashukov/rlp-php/php)](https://packagist.org/packages/amashukov/rlp-php)
+[![License](https://img.shields.io/packagist/l/amashukov/rlp-php)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/AndreyMashukov/rlp-php?style=social)](https://github.com/AndreyMashukov/rlp-php)
+
+`amashukov/rlp-php` is a pure-PHP implementation of RLP (Recursive Length Prefix), the canonical serialization format used throughout Ethereum and the EVM for transactions, blocks and the Merkle-Patricia state trie. It encodes and decodes nested byte-string structures and minimal big-endian integers, and enforces strict RLP canonicality on decode to defend against malleable encodings.
 
 The package is a leaf primitive — zero composer dependencies, just `ext-gmp` for big-integer encoding helpers.
 
-## Install
+## Features
+
+- **Encode & decode** arbitrarily nested lists of byte-strings.
+- **Integer encoding** in Ethereum's minimal big-endian convention, including big integers via decimal strings.
+- **Strict canonical decode** — rejects non-canonical length prefixes, leading-zero lengths, trailing bytes and truncated input.
+- **Stream decoding** for parsing concatenated RLP items (e.g. a sequence of transactions).
+- **Zero composer dependencies** — `ext-gmp` only.
+- PHPStan level 9 clean, `@PER-CS` formatted, CI-tested.
+
+## Installation
 
 ```bash
 composer require amashukov/rlp-php
@@ -91,6 +110,28 @@ These checks defend downstream consumers against malleable transaction encodings
 - `ext-gmp`
 
 No composer dependencies.
+
+## Related packages
+
+Part of a modular pure-PHP blockchain toolkit:
+
+| Package | Purpose |
+|---|---|
+| [amashukov/keccak-php](https://github.com/AndreyMashukov/keccak-php) | Keccak-256 / SHA-3 / SHAKE hashing |
+| [amashukov/secp256k1-php](https://github.com/AndreyMashukov/secp256k1-php) | secp256k1 ECDSA sign / verify / recover |
+| [amashukov/rlp-php](https://github.com/AndreyMashukov/rlp-php) | Ethereum RLP encode / decode |
+| [amashukov/ton-cell-php](https://github.com/AndreyMashukov/ton-cell-php) | TON TLB Cell / Builder / Slice / BOC |
+| [amashukov/eip1559-tx-signer-php](https://github.com/AndreyMashukov/eip1559-tx-signer-php) | EIP-1559 transaction signer |
+| [amashukov/abi-encoder-php](https://github.com/AndreyMashukov/abi-encoder-php) | Ethereum ABI encoder |
+| [amashukov/eth-rpc-client-php](https://github.com/AndreyMashukov/eth-rpc-client-php) | Ethereum JSON-RPC client |
+| [amashukov/eth-php](https://github.com/AndreyMashukov/eth-php) | EVM umbrella package |
+
+## Quality
+
+- PHPStan level 9.
+- php-cs-fixer with the `@PER-CS` ruleset.
+- GitHub Actions CI on every push.
+- Test vectors validated against the Ethereum RLP / Yellow Paper reference outputs.
 
 ## Reference
 

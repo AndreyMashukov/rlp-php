@@ -3,7 +3,8 @@
     "description": "RLP (Recursive Length Prefix) encoder and decoder in pure PHP — Ethereum's canonical serialization for transactions, blocks, and state trie.",
     "type": "library",
     "license": "MIT",
-    "keywords": ["rlp", "ethereum", "serialization", "encoding"],
+    "homepage": "https://github.com/AndreyMashukov/rlp-php",
+    "keywords": ["rlp", "recursive-length-prefix", "ethereum", "evm", "serialization", "encoding", "decoding", "blockchain", "pure-php"],
     "authors": [
         {
             "name": "Andrei Mashukov",
@@ -11,6 +12,10 @@
             "homepage": "https://github.com/AndreyMashukov"
         }
     ],
+    "support": {
+        "issues": "https://github.com/AndreyMashukov/rlp-php/issues",
+        "source": "https://github.com/AndreyMashukov/rlp-php"
+    },
     "require": {
         "php": ">=8.3",
         "ext-gmp": "*"
